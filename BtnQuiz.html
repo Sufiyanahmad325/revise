@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        .container{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box{
+            border: 2px solid black;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+
+        }
+
+        .quizOption button{
+            width: 120px;
+            padding: 10px 18px;
+            background-color: rgb(178, 178, 221);
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+        }
+
+        .submitBtn{
+            padding: 10px 35px;
+            border: none;
+            background: rgb(89, 122, 89);
+            font-weight: 800;
+            border-radius: 8px;
+        }
+
+        .quizOption{
+            display: flex;
+            gap: 12px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+
+        <div class="box">
+            <h1>this is your question</h1>
+
+            <div class="quizOption">
+                <!-- <button>Apple</button>
+                <button>banana</button>
+                <button>mango</button>
+                <button>pinApple</button> -->
+            </div>
+
+            <button class="submitBtn">Next</button>
+        </div>
+
+
+    </div>
+
+
+    <script>
+         const indiaQuiz = [
+            {
+                question: "What is the capital of Andhra Pradesh?",
+                options: ["Amaravati", "Hyderabad", "Vijayawada", "Visakhapatnam"],
+                answer: "Amaravati"
+            },
+            {
+                question: "What is the capital of Maharashtra?",
+                options: ["Nagpur", "Pune", "Mumbai", "Nashik"],
+                answer: "Mumbai"
+            },
+            {
+                question: "What is the capital of Tamil Nadu?",
+                options: ["Coimbatore", "Madurai", "Chennai", "Salem"],
+                answer: "Chennai"
+            },
+            // {
+            //     question: "What is the capital of West Bengal?",
+            //     options: ["Darjeeling", "Howrah", "Kolkata", "Asansol"],
+            //     answer: "Kolkata"
+            // },
+            // {
+            //     question: "What is the capital of Rajasthan?",
+            //     options: ["Jodhpur", "Udaipur", "Jaipur", "Ajmer"],
+            //     answer: "Jaipur"
+            // }
+
+
+        ];
+
+            const question = document.querySelector("h1")
+            const SubmitBtn = document.querySelector('.submitBtn')
+            const quizOption = document.querySelector(".quizOption")
+            let currentIndex = 0;
+            let choseAnswer =''
+            let score=0
+
+            const loadQuiz = ()=>{
+                quizOption.innerHTML =''
+                question.innerText = indiaQuiz[currentIndex].question
+                indiaQuiz[currentIndex].options.map((option,index)=>{
+                    let btn = document.createElement('button')
+                    btn.innerText = option
+
+                    
+                    btn.addEventListener("click" , ()=>{
+                        let allButtons = document.querySelectorAll(".quizOption button")
+                        allButtons.forEach((Element, index)=>{
+                            if(Element.innerText === indiaQuiz[currentIndex].answer){
+                                Element.style.backgroundColor= 'green'
+                                choseAnswer=option
+                            }else{
+                                Element.style.backgroundColor= 'red'
+                            }
+
+                            Element.disabled=true
+                        })
+                    })
+                    
+                    quizOption.appendChild(btn)
+                })
+            }
+
+
+            SubmitBtn.addEventListener("click" ,  ()=>{
+                if(choseAnswer == indiaQuiz[currentIndex].answer){
+                    console.log('hello')
+                    console.log(choseAnswer)
+                    score = score+1
+                }
+                
+                if(currentIndex<indiaQuiz.length-1){
+                    currentIndex++
+                    choseAnswer=''
+                    loadQuiz()
+                }else{
+                    document.querySelector('.box').innerHTML=`
+                    <h1>${score} / ${indiaQuiz.length}</h1>
+                    `
+                }
+                
+            })
+
+
+            loadQuiz()
+
+    </script>
+</body>
+
+</html>
