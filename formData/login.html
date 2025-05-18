@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form{
+            border: 2px solid red;
+            padding: 10px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        input{
+            font-size: 22px;
+            padding: 3px 5px;
+        }
+        form div{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="http://localhost:8000/api/v1/users/uploadBlog" method="post">
+            <div>
+                <label for="">username</label>
+                <input type="text" name="text">
+            </div>
+            
+            <div>
+                <label for="">password</label>
+                <input type="text" name="password" id="">
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+
+            let fillData = document.querySelector('form') 
+
+            fillData.addEventListener("submit" , async(e)=>{
+                e.preventDefault()
+
+                let formdata = new FormData(fillData)
+                let showFormData = Object.fromEntries(formdata)
+                console.log(formdata)
+                console.log(showFormData)
+
+                const response = await fetch(fillData.action,{
+                        method:fillData.method ,
+                        headers:{
+                            "Content-Types":"application/json"
+                        },
+                        body:JSON.stringify(showFormData),
+                        credentials:"include"
+
+                }) 
+
+                if(response.ok){
+                    document.cookie = `accessToken=${result.data.accessToken};path=/; sameSite=Lax`;
+                }
+            })
+
+    </script>
+</body>
+</html>
