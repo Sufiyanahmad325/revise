@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .loader{
+            width: 200px;
+            height: 200px;
+            border: 12px solid rgb(234, 225, 225);
+            border-top: 12px solid red;
+            /* background-color: aqua; */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+            animation-name: myLoader;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function:ease-out;
+            
+        }
+
+        p{
+            position: sticky;
+        }
+
+
+        @keyframes myLoader {
+            0%{
+                transform: rotate(0deg);
+            }
+
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loader">
+            <p>A</p>
+        </div>
+    </div>
+</body>
+</html>
