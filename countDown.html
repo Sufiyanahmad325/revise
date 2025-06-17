@@ -48,6 +48,46 @@
       <div class="box second">00</div>
     </div>
 
-    
+    <script>
+      let day = document.querySelector(".day");
+      let hours = document.querySelector(".hours");
+      let minute = document.querySelector(".minute");
+      let second = document.querySelector(".second");
+      let box = document.querySelectorAll(".box");
+
+      let UpcomingDate = "22 june 2025 04:13 PM";
+      let UpcomingDateConverted = new Date(UpcomingDate);
+      let start;
+
+      function run() {
+        let currectDate = new Date();
+        let comingDate = UpcomingDateConverted - currectDate;
+
+        if (comingDate < 0) {
+          alert("your date is ended");
+          clearInterval(start);
+          box[0].innerText = "00";
+          box[1].innerText = "00";
+          box[2].innerText = "00";
+          box[3].innerText = "00";
+          return;
+        }
+
+        let totalSeconds = comingDate / 1000;
+        let d = Math.floor(totalSeconds / 60 / 60 / 24);
+        let h = Math.floor((totalSeconds / 60 / 60) % 24);
+        let m = Math.floor((totalSeconds / 60) % 60);
+        let s = Math.floor(totalSeconds % 60);
+
+        day.innerText = d;
+        hours.innerText = h;
+        minute.innerText = m;
+        second.innerText = s;
+      }
+
+      start = setInterval(() => {
+        run();
+      }, 1000);
+    </script>
   </body>
 </html>
