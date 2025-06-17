@@ -37,15 +37,42 @@
         box-shadow: 0px 0px 10px black;
         color: wheat;
       }
+      .container div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .container div > div:first-child{
+        font-size: 22px;
+        font-weight: 800;
+      }
     </style>
   </head>
 
   <body>
     <div class="container">
-      <div class="box day">00</div>
-      <div class="box hours">00</div>
-      <div class="box minute">00</div>
-      <div class="box second">00</div>
+      <div>
+        <div>Day</div> 
+        <div class="box day">00</div>
+      </div>
+
+      <div>
+        <div>Hours</div>
+        <div class="box hours">00</div>
+      </div>
+
+      <div>
+        <div>Minute</div>
+        <div class="box minute">00</div>
+      </div>
+
+      <div>
+        <div>Second</div>
+        <div class="box second">00</div>
+      </div>
+
     </div>
 
     <script>
