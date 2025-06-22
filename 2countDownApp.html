@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 100vw;
+        height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
+      .box {
+        font-size: 35px;
+        font-weight: 800;
+        border: 3px solid black;
+        padding: 10px 15px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calendar">
+        <h3>Enter Your Upcoming Date and Time</h3>
+        <input class="date" type="date" /> <input class="time" type="time" />
+        <button class="start">Start</button>
+      </div>
+      <div class="box">00</div>
+      <div class="box">00</div>
+      <div class="box">00</div>
+      <div class="box">00</div>
+    </div>
+
+    <script>
+      let box = document.querySelectorAll(".box");
+      let date = document.querySelector(".date");
+      let time = document.querySelector(".time");
+      let startbtn = document.querySelector(".start");
+      let calendar = document.querySelector(".calendar");
+      let runTimer ;
+
+        startbtn.addEventListener('click' , start)
+
+
+      function run() {
+        let upCommingDate = new Date(`${date.value} ${time.value}`);
+        let currentDate = new Date();
+
+        if((upCommingDate-currentDate) < 0){
+                alert("Enter upCommimg Date")
+                clearInterval(runTimer)
+                return
+        }
+
+        if((upCommingDate-currentDate)>0){
+            if(calendar.innerText){
+                remove()
+            }
+        }
+
+        let upCommingTime = (upCommingDate - currentDate) / 1000;
+
+
+        let d = Math.floor(upCommingTime / 60 / 60 / 24);
+        let h = Math.floor((upCommingTime / 60 / 60) % 24);
+        let m = Math.floor((upCommingTime / 60) % 60);
+        let s = Math.floor(upCommingTime % 60);
+
+        box[0].innerText = d < 10 ? "0" + d : d;
+        box[1].innerText = h < 10 ? "0" + h : h;
+        box[2].innerText = h < 10 ? "0" + m : m;
+        box[3].innerText = s < 10 ? "0" + s : s;
+      }
+
+     function start (){
+        if(!date.value || !time.value){
+             alert('Enter both date and Time')
+        }
+         runTimer = setInterval(run, 1000);
+     }
+
+
+
+     const remove=()=>{
+            calendar.style.display='none'
+     }
+    </script>
+  </body>
+</html>
