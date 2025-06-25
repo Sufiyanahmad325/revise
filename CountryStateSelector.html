@@ -5,28 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        *{
-            padding: 0;
-            margin: 0;
-        }
-        .container{
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(48, 87, 87);
+      }
     </style>
   </head>
   <body>
     <div class="container">
-        <select name="" id="country">
-          <option value="choose">country</option>
-        </select>
+      <select name="country" id="country" onchange="change()">
+        <option value="choose">country</option>
+        <option value="indiaAllRegions">India</option>
+        <option value="russiaAllRegions">Russia</option>
+      </select>
 
-        <select name="" id="state">
-          <option value="choose">state</option>
-        </select>
+      <select name="" id="state">
+        <option value="choose">state</option>
+      </select>
     </div>
 
     <script>
@@ -161,7 +164,26 @@
         ],
       };
 
+      let change = () => {
+        if (country.value === "choose") {
+          state.innerHTML = `<option value="choose">state</option>`;
+          return;
+        }
 
+        console.log(country.value);
+        let findCountry = data[country.value];
+        console.log(findCountry);
+
+        let optionlist;
+        findCountry.forEach((element) => {
+          optionlist += `
+                <option value="${element}">${element}</option>
+            `;
+          console.log(optionlist);
+        });
+
+        state.innerHTML = optionlist;
+      };
     </script>
   </body>
 </html>
