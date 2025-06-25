@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <select name="" id="country">
+          <option value="choose">country</option>
+        </select>
+
+        <select name="" id="state">
+          <option value="choose">state</option>
+        </select>
+    </div>
+
+    <script>
+      let country = document.querySelector("#country");
+      let state = document.querySelector("#state");
+
+      let data = {
+        russiaAllRegions: [
+          "Adygea",
+          "Altai Republic",
+          "Altai Krai",
+          "Amur Oblast",
+          "Arkhangelsk Oblast",
+          "Astrakhan Oblast",
+          "Bashkortostan",
+          "Belgorod Oblast",
+          "Bryansk Oblast",
+          "Buryatia",
+          "Chechnya",
+          "Chelyabinsk Oblast",
+          "Chukotka Autonomous Okrug",
+          "Chuvashia",
+          "Dagestan",
+          "Ingushetia",
+          "Irkutsk Oblast",
+          "Ivanovo Oblast",
+          "Jewish Autonomous Oblast",
+          "Kabardino-Balkaria",
+          "Kaliningrad Oblast",
+          "Kalmykia",
+          "Kaluga Oblast",
+          "Kamchatka Krai",
+          "Karachay-Cherkessia",
+          "Karelia",
+          "Kemerovo Oblast",
+          "Khabarovsk Krai",
+          "Khakassia",
+          "Khanty-Mansi Autonomous Okrug",
+          "Kirov Oblast",
+          "Komi Republic",
+          "Kostroma Oblast",
+          "Krasnodar Krai",
+          "Krasnoyarsk Krai",
+          "Kurgan Oblast",
+          "Kursk Oblast",
+          "Leningrad Oblast",
+          "Lipetsk Oblast",
+          "Magadan Oblast",
+          "Mari El",
+          "Mordovia",
+          "Moscow",
+          "Moscow Oblast",
+          "Murmansk Oblast",
+          "Nenets Autonomous Okrug",
+          "Nizhny Novgorod Oblast",
+          "North Ossetia–Alania",
+          "Novgorod Oblast",
+          "Novosibirsk Oblast",
+          "Omsk Oblast",
+          "Orel Oblast",
+          "Orenburg Oblast",
+          "Penza Oblast",
+          "Perm Krai",
+          "Primorsky Krai",
+          "Pskov Oblast",
+          "Rostov Oblast",
+          "Ryazan Oblast",
+          "Saint Petersburg",
+          "Sakha (Yakutia)",
+          "Sakhalin Oblast",
+          "Samara Oblast",
+          "Saratov Oblast",
+          "Smolensk Oblast",
+          "Stavropol Krai",
+          "Sverdlovsk Oblast",
+          "Tambov Oblast",
+          "Tatarstan",
+          "Tomsk Oblast",
+          "Tula Oblast",
+          "Tuva",
+          "Tver Oblast",
+          "Tyumen Oblast",
+          "Udmurtia",
+          "Ulyanovsk Oblast",
+          "Vladimir Oblast",
+          "Volgograd Oblast",
+          "Vologda Oblast",
+          "Voronezh Oblast",
+          "Yamalo-Nenets Autonomous Okrug",
+          "Yaroslavl Oblast",
+          "Zabaykalsky Krai",
+          "Sevastopol",
+          "Republic of Crimea",
+        ],
+        indiaAllRegions: [
+          "Andhra Pradesh",
+          "Arunachal Pradesh",
+          "Assam",
+          "Bihar",
+          "Chhattisgarh",
+          "Goa",
+          "Gujarat",
+          "Haryana",
+          "Himachal Pradesh",
+          "Jharkhand",
+          "Karnataka",
+          "Kerala",
+          "Madhya Pradesh",
+          "Maharashtra",
+          "Manipur",
+          "Meghalaya",
+          "Mizoram",
+          "Nagaland",
+          "Odisha",
+          "Punjab",
+          "Rajasthan",
+          "Sikkim",
+          "Tamil Nadu",
+          "Telangana",
+          "Tripura",
+          "Uttar Pradesh",
+          "Uttarakhand",
+          "West Bengal",
+          "Andaman and Nicobar Islands",
+          "Chandigarh",
+          "Dadra and Nagar Haveli and Daman and Diu",
+          "Delhi",
+          "Jammu and Kashmir",
+          "Ladakh",
+          "Lakshadweep",
+          "Puducherry",
+        ],
+      };
+
+
+    </script>
+  </body>
+</html>
