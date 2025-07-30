@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        width: 100vw;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .myInput {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .myInput input {
+        width: 100%;
+        padding: 10px 15px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        outline: none;
+      }
+
+      .myInput button {
+        padding: 10px 15px;
+        border-radius: 6px;
+        font-weight: 600;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .myInput button:hover {
+        background-color: #0056b3;
+      }
+
+      .list {
+        width: 100%;
+        max-width: 400px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        align-items: center;
+        padding: 10px 15px;
+        background-color: #f8f8f8;
+        border-radius: 6px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .list p {
+        flex: 1;
+        margin-right: 10px;
+        word-break: break-word;
+      }
+
+      .list .myBtn {
+        display: flex;
+        gap: 8px;
+      }
+
+      .list .myBtn button {
+        padding: 8px 12px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+      }
+
+      .list .myBtn button:first-child {
+        background-color: #dc3545;
+        color: white;
+      }
+
+      .list .myBtn button:first-child:hover {
+        background-color: #b02a37;
+      }
+
+      .list .myBtn button:last-child {
+        background-color: #ffc107;
+        color: black;
+      }
+
+      .list .myBtn button:last-child:hover {
+        background-color: #d39e00;
+      }
+
+      /* Responsive */
+      @media (max-width: 450px) {
+        .myInput,
+        .list {
+          width: 90%;
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .list {
+          gap: 10px;
+        }
+
+        .list .myBtn {
+          justify-content: flex-end;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="myInput">
+        <input type="text" class="inputText" />
+        <button class="submitBTn">Submit</button>
+      </div>
+
+      <div class="todoList"></div>
+    </div>
+
+    <script>
+      const myInput = document.querySelector(".myInput");
+      const submitBTn = document.getElementsByClassName("submitBTn")[0];
+      const todoList = document.querySelectorAll(".todoList")[0];
+
+      let myList = {};
+      let editedData = null
+
+      function add() {
+
+        if(editedData){
+          editedData.querySelector('.myText').innerText = document.querySelector(".inputText").value
+          document.querySelector(".inputText").value = ''
+          editedData = null
+          submitBTn.innerText = 'Add'
+          return
+        }
+
+        const inputText = document.querySelector(".inputText");
+
+        let newList = document.createElement("div");
+        newList.classList.add("list");
+        newList.innerHTML = `
+            <p class= 'myText'>${inputText.value}</p>
+            <div class="myBtn">
+              <button class='deleteTodo'>Delete</button>
+              <button class='editBtn'>Edit</button>
+            </div>
+            `;
+        todoList.appendChild(newList);
+        inputText.value = ''
+
+        // Use querySelector on `newList` to bind to the button inside this item
+        let deleteBtn = newList.querySelector(".deleteTodo");
+        deleteBtn.addEventListener("click", function () {
+          newList.remove();
+        });
+
+        let editBtn = newList.querySelector(".editBtn");
+        let myText = newList.querySelector(".myText");
+
+        editBtn.addEventListener("click", () => {
+          console.log(myText.innerText);
+          inputText.value = myText.innerText;
+          submitBTn.innerText = "Editing";
+          editedData = newList
+        });
+      }
+
+      submitBTn.addEventListener("click", add);
+    </script>
+  </body>
+</html>
