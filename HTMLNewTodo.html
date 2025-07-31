@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f0f2f5;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 40px 20px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 500px;
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .myInput {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .inputText {
+        flex: 1;
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+      }
+
+      .submitBTn {
+        padding: 10px 18px;
+        border: none;
+        background-color: #007bff;
+        color: #ffffff;
+        font-size: 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .submitBTn:hover {
+        background-color: #0056b3;
+      }
+
+      .todoItem {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 15px;
+        background-color: #f9f9f9;
+        border-left: 4px solid #007bff;
+        border-radius: 6px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        gap: 10px;
+      }
+
+      .todoList {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .myText {
+        flex: 1;
+        margin-right: 12px;
+        font-size: 16px;
+        color: #333;
+        word-break: break-word;
+      }
+
+      .myBtn {
+        display: flex;
+        gap: 8px;
+      }
+
+      .myBtn button {
+        padding: 8px 12px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.2s;
+      }
+
+      .myBtn .deleteTodo {
+        background-color: #dc3545;
+        color: white;
+      }
+
+      .myBtn .deleteTodo:hover {
+        background-color: #b02a37;
+      }
+
+      .myBtn .editBtn {
+        background-color: #ffc107;
+        color: black;
+      }
+
+      .myBtn .editBtn:hover {
+        background-color: #d39e00;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="myInput">
+        <input type="text" class="inputText" />
+        <button class="submitBTn">Submit</button>
+      </div>
+
+      <div class="todoItem"></div>
+    </div>
+
+    <script>
+      const myInput = document.querySelector(".myInput");
+      const submitBTn = document.getElementsByClassName("submitBTn")[0];
+      const todoList = document.querySelectorAll(".todoList")[0];
+      const todoItem = document.querySelectorAll(".todoItem")[0];
+      const inputText = document.querySelector(".inputText");
+
+      let allList = [];
+      let editedData = null;
+
+      function showList() {
+        todoItem.innerHTML = "";
+        allList.forEach((ele, ind) => {
+          let newList = document.createElement("div");
+          newList.classList.add("todoList");
+          newList.innerHTML = `<p class="myText">${ele.text}</p>
+          <div class="myBtn">
+            <button class="deleteTodo" onclick = "deleteMyTodo(${ele.id})">Delete</button>
+            <button class="editBtn" onclick="editMyTodo(${ele.id})">Edit</button>
+
+          </div>`;
+          todoItem.appendChild(newList);
+        });
+      }
+
+      function add() {
+        const inputText = document.querySelector(".inputText");
+
+        if(editedData != null){
+            allList =  allList.map(ele => {
+             return ele.id == editedData.id ? {...ele , text:inputText.value}:ele
+            })
+            editedData = null
+            submitBTn.innerText = 'Submit'
+            showList()
+            return
+        }
+
+        if (!inputText.value.trim()) return; // optional: prevent empty input
+        let x = { id: Date.now(), text: inputText.value };
+        allList.push(x);
+        console.log(allList);
+        showList();
+      }
+
+      const deleteMyTodo = (deleteId) => {
+        allList = allList.filter((ele) => ele.id !== deleteId);
+        showList();
+      };
+
+
+      const editMyTodo =(eleId)=>{
+        console.log(eleId)
+        allList.forEach(ele=>{
+         if(ele.id === eleId){
+            editedData = ele
+            inputText.value = ele.text
+         }
+        } )
+            submitBTn.innerText = 'EditTodo'
+      }
+
+
+      submitBTn.addEventListener("click", add);
+    </script>
+  </body>
+</html>
