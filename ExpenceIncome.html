@@ -124,10 +124,17 @@
         font-weight: 800;
         font-size: 1.3rem;
       }
+
+      h2{
+        padding-left: 280px;
+        
+      }
+
     </style>
   </head>
   <body>
     <div class="container">
+      <h2>Balance: <span class="total">00</span></h2>
       <h1>Expence</h1>
 
       <div class="form">
@@ -187,6 +194,7 @@
 
         console.log(data);
         refreshList();
+        showTotalBalance()
       });
 
       // <div class="data">
@@ -215,6 +223,22 @@
           list.appendChild(newList);
         });
       };
+
+
+      const showTotalBalance=()=>{
+            let myIncome = 0
+            let myExpence = 0
+
+            data.map((ele , ind)=>{
+              ele.expenceType == 'Expence' ? myExpence+= Number(ele.amount) 
+              :  myIncome += Number(ele.amount)
+            })
+
+            yourBlance = myIncome - myExpence
+
+            document.querySelector('.total').innerText= yourBlance
+      }
+
     </script>
   </body>
 </html>
