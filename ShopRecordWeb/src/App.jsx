@@ -59,7 +59,7 @@ function App() {
       <div className="w-full max-w-3xl bg-white p-6 rounded-2xl shadow">
         {openComponent === 1 && <Allitem data={data} />}
         {openComponent === 2 && <LowStock  data={data} />}
-        {openComponent === 3 && <CreateItems  data={data} />}
+        {openComponent === 3 && <CreateItems setdata={setdata} data={data} />}
       </div>
     </div>
   )
