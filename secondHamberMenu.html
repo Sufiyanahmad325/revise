@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 100vw;
+            height: 10vh;
+
+            display: flex;
+            justify-content: space-between;
+            background-color: aqua;
+        }
+        .hambergar{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            justify-content: center;
+            padding: 0px 0px 0px 10px;
+
+          
+        }
+
+        .line{
+            width: 40px;
+            height: 6px;
+            background-color: black;
+            border-radius: 10px;
+        }
+
+        .navbar{
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-list{
+            display: flex;
+            align-items: center;
+            height: 100%;
+            gap: 20px;
+            font-weight: 700;
+            font-size: 20px;
+            padding: 0px 20px 0px 10px;
+
+        }
+
+        li{
+            list-style: none;
+            text-decoration: none;
+        }
+        a{
+            text-decoration: none;
+        }
+/*  transition  */
+       
+      
+
+        .hambergar-navbar{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            background-color: black;
+            height: 0;
+            overflow: hidden;
+            transition: all;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in-out;
+           
+        }
+
+        .addtransition{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 30vh;
+           
+        }
+
+        .hambergar-nav-list{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px 0px;
+        }
+
+        .hambergar-nav-list li a{
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+        }
+        .hambergar-nav-list li a:hover{
+            color: rgb(190, 184, 184);
+        }
+
+            @media(max-width:480px){
+                .navbar{
+                    display: none;
+                }
+            }
+    </style>
+</head>
+<body>
+    <div class="MainContainer">
+        <header class="container">
+                <div class="hambergar">
+                    <div class="line line1"></div>
+                    <div class="line line2"></div>
+                    <div class="line line3"></div>
+                </div>
+
+                <div>
+                    <nav class="navbar">
+                        <ul class="nav-list">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </header>
+
+
+            <div class="hambargerlist ">
+                <nav class="hambergar-navbar">
+                    <ul class="hambergar-nav-list">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <h1>Hello sir 😁</h1>
+
+    </div>
+
+
+    <script>
+
+            const hambergarBtn = document.querySelector('.hambergar')
+            const hambergarNavbar = document.querySelector(".hambergar-navbar")
+
+            hambergarBtn.addEventListener("click", ()=>{
+                hambergarNavbar.classList.toggle('addtransition')
+            })
+
+
+    </script>
+</body>
+</html>
