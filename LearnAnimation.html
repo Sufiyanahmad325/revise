@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .main {
+      width: 200px;
+      height: 200px;
+      background-color: lightblue;
+      margin-bottom: 20px;
+    }
+
+    .main:hover {
+      background-color: green;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: lightgreen;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .slideIn {
+      transition: all;
+      transition-duration: 2s;
+      transition-timing-function: ease-in;
+      transform: translateX(500px);
+    }
+
+    input {
+      display: block;
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 30px;
+    }
+
+    input::placeholder {
+      color: black;
+    }
+
+    input[type="text"] {
+      color: red;
+    }
+
+    .hero{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+    }
+    .subHero {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      justify-content: center;
+      align-items: center;
+      max-width: 1000px;
+      padding: 20px;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+      margin: 10px;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    img:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .subHero {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .subHero {
+        grid-template-columns: 1fr 1fr;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="main"></div>
+  <button class="btn">Start</button>
+  <input type="text" placeholder="Enter Your Name" autofocus />
+
+  <div class="hero">
+    <div class="subHero">
+      <img src="https://images.pexels.com/photos/27771819/pexels-photo-27771819.jpeg" alt="Img">
+      <img src="https://images.pexels.com/photos/27771819/pexels-photo-27771819.jpeg" alt="Img">
+      <img src="https://images.pexels.com/photos/27771819/pexels-photo-27771819.jpeg" alt="Img">
+      <img src="https://images.pexels.com/photos/27771819/pexels-photo-27771819.jpeg" alt="Img">
+      <img src="https://images.pexels.com/photos/27771819/pexels-photo-27771819.jpeg" alt="Img">
+      <img src="https://images.pexels.com/photos/27771819/pexels-photo-27771819.jpeg" alt="Img">
+      <img src="https://images.pexels.com/photos/27771819/pexels-photo-27771819.jpeg" alt="Img">
+      <img src="https://images.pexels.com/photos/27771819/pexels-photo-27771819.jpeg" alt="Img">
+    </div>
+  </div>
+
+  <script>
+    const btn = document.querySelector(".btn");
+    const box = document.querySelector(".main");
+
+    btn.addEventListener("click", () => {
+      box.classList.add("slideIn");
+    });
+  </script>
+</body>
+
+</html>
