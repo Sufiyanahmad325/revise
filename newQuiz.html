@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: gray;
+      }
+      .quiz {
+        width: 600px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 2px solid black;
+        gap: 20px;
+        padding: 10px;
+        border-radius: 10px;
+      }
+      .options {
+        display: flex;
+        gap: 10px;
+      }
+      .optionButton {
+        border: 2px solid black;
+        padding: 6px 14px;
+        border-radius: 5px;
+        font-weight: 800;
+        font-size: 16px;
+      }
+      .submitBtn {
+        font-size: 14px;
+        padding: 8px 35px;
+        border-radius: 10px;
+        border: none;
+      }
+      .submitBtn:hover {
+        background: rgb(113, 113, 147);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="quiz">
+        <h1>here is your question</h1>
+        <div class="options">
+          <!-- <button>option</button>
+                <button>option</button>
+                <button>option</button>
+                <button>option</button> -->
+        </div>
+        <button class="submitBtn">Next</button>
+      </div>
+    </div>
+
+    <script>
+      const indiaQuiz = [
+        {
+          question: "What is the capital of Andhra Pradesh?",
+          options: ["Amaravati", "Hyderabad", "Vijayawada", "Visakhapatnam"],
+          answer: "Amaravati",
+        },
+        {
+          question: "What is the capital of Maharashtra?",
+          options: ["Nagpur", "Pune", "Mumbai", "Nashik"],
+          answer: "Mumbai",
+        },
+        {
+          question: "What is the capital of Tamil Nadu?",
+          options: ["Coimbatore", "Madurai", "Chennai", "Salem"],
+          answer: "Chennai",
+        },
+        {
+          question: "What is the capital of West Bengal?",
+          options: ["Darjeeling", "Howrah", "Kolkata", "Asansol"],
+          answer: "Kolkata",
+        },
+        {
+          question: "What is the capital of Rajasthan?",
+          options: ["Jodhpur", "Udaipur", "Jaipur", "Ajmer"],
+          answer: "Jaipur",
+        },
+      ];
+      let question = document.querySelector("h1");
+      let optionsBox = document.querySelector(".options");
+      let submitBtn = document.querySelector(".submitBtn");
+      let index = 0;
+      let score = 0;
+
+      const loadQuiz = () => {
+        question.innerText = indiaQuiz[index].question;
+        loadOption();
+      };
+
+      const loadOption = () => {
+            optionsBox.innerHTML=''
+        indiaQuiz[index].options.forEach((ele) => {
+          let option = document.createElement("button");
+          option.innerText = ele;
+          option.classList.add("optionButton");
+          optionsBox.appendChild(option);
+
+          option.addEventListener("click", () => {
+            if (option.innerText == indiaQuiz[index].answer) {
+              option.style.backgroundColor = "green ";
+              score++;
+            } else {
+              option.style.backgroundColor = "red";
+              showCorrectAnswer();
+            }
+            disableAlloption();
+          });
+        });
+      };
+
+
+
+      const showCorrectAnswer = () => {
+        let optionButton = document.querySelectorAll(".optionButton");
+        for (let option of optionButton) {
+          if (option.innerText == indiaQuiz[index].answer) {
+            option.style.backgroundColor = "green";
+          }
+        }
+      };
+
+
+
+      const disableAlloption = () => {
+        let optionButton = document.querySelectorAll(".optionButton");
+        for (let option of optionButton) {
+          option.disabled = true; // ✅ ab sab buttons disable ho jayenge
+        }
+      };
+
+
+        submitBtn.addEventListener('click' , ()=>{
+            if(index < indiaQuiz.length-1){
+              index++
+              loadQuiz()
+            }else{
+              submitBtn.innerHTML = `<div>Score ${score}/${indiaQuiz.length}</div>`
+            }
+        })
+
+      loadQuiz();
+    </script>
+  </body>
+</html>
