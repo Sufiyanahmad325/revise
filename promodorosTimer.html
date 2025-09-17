@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      .container {
+        width: 300px;
+        margin: 50px auto;
+        padding: 20px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .box h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      .box > div:nth-child(2) {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 15px 0;
+      }
+
+      .controlBtn {
+        margin: 15px 0;
+      }
+
+      .controlBtn button {
+        padding: 8px 12px;
+        margin: 0 5px;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .controlBtn .reset {
+        background-color: #dc3545;
+      }
+
+      .inputs {
+        margin: 15px 0;
+        text-align: left;
+      }
+
+      .inputs span {
+        display: inline-block;
+        width: 80px;
+        font-size: 14px;
+      }
+
+      .inputs input {
+        width: 100px;
+        padding: 4px;
+        margin: 5px 0;
+      }
+
+      .total {
+        margin-top: 15px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <h1>Promodoros Timer</h1>
+        <div class="showTime">00:00</div>
+        <div class="controlBtn">
+          <button class="work-time">Work-Time</button>
+          <button class="reset">Reset</button>
+        </div>
+
+        <div class="inputs">
+          <span>Work-Time</span>
+          <input class="workTimeInput" type="number" min="5" value="5" />
+          <br />
+          <span>Break-Time</span>
+          <input class="breakTimeInput" type="number" min="2" value="2" />
+        </div>
+
+        <div>Promodoros completed <span class="total">00</span></div>
+      </div>
+    </div>
+
+    <script>
+      let workTimebtn = document.querySelector(".work-time");
+      let resetbtn = document.querySelector(".reset");
+      let workTimeInput = document.querySelector(".workTimeInput");
+      let breakTimeInput = document.querySelector(".breakTimeInput");
+      let showTime = document.querySelector(".showTime");
+      let timer;
+      let start = true;
+      let scoreCompleted = document.querySelector(".total");
+      let score = 0;
+      let run = false;
+
+      workTimebtn.addEventListener("click", () => {
+        if (run) return;
+        run = true;
+
+        let time = start ? workTimeInput.value : breakTimeInput.value;
+
+        let mainTime = time * 60;
+
+        timer = setInterval(() => {
+          mainTime--;
+          let min = Math.floor(mainTime / 60);
+          let sec = Math.floor(mainTime % 60);
+
+          if (mainTime <= 0) {
+            clearInterval(timer);
+            start = start ? false : true;
+            run = false;
+            if (start) {
+              score += 1;
+              scoreCompleted.innerText = score;
+            }
+          }
+
+          showTime.innerText = `${min > 9 ? min : "0" + min}:${
+            sec > 9 ? sec : "0" + sec
+          }`;
+        }, 1000);
+      });
+
+      resetbtn.addEventListener("click", () => {
+        clearInterval(timer);
+        showTime.innerText = "00:00";
+        scoreCompleted.innerText = "00";
+        score = 0;
+        start = true;
+        run = false;
+      });
+
+
+      
+    </script>
+  </body>
+</html>
