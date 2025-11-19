@@ -182,22 +182,22 @@ const reverseArray = (arr) => {
 
 
 const reverseArray2 = (arr) => {
-        start = 0
-        end = arr.length -1 
+    start = 0
+    end = arr.length - 1
 
-        while(start < end){
+    while (start < end) {
 
-            let temp = arr[start]
+        let temp = arr[start]
 
 
-            arr[start] = arr[end]
-            arr[end] = temp
+        arr[start] = arr[end]
+        arr[end] = temp
 
-            start ++
-            end --
-        }
+        start++
+        end--
+    }
 
-        console.log(arr)
+    console.log(arr)
 }
 
 // reverseArray2([2,5,6,7,4])
@@ -205,15 +205,15 @@ const reverseArray2 = (arr) => {
 
 
 
-const isPalindrome = (data)=>{
+const isPalindrome = (data) => {
 
     let a = data.toLowerCase().split(' ').join('')
 
     let b = a.split('').reverse().join("")
 
-    return b == a ? true :false 
-    
-    
+    return b == a ? true : false
+
+
 
 }
 // console.log(isPalindrome("madam"));          // true
@@ -224,10 +224,10 @@ const isPalindrome = (data)=>{
 
 
 
-const factorial =(num)=>{
+const factorial = (num) => {
     let total = 1
 
-    for(let i =1 ; i<= num ; i++){
+    for (let i = 1; i <= num; i++) {
         total *= i
     }
 
@@ -239,32 +239,32 @@ const factorial =(num)=>{
 
 
 
-const fibonacci = (num) =>{
- if(num <= 0 )  return [] 
- if(num <=1 )  return [0] 
- if(num == 2 )  return [0 , 1] 
+const fibonacci = (num) => {
+    if (num <= 0) return []
+    if (num <= 1) return [0]
+    if (num == 2) return [0, 1]
 
 
- let series = [0, 1];
+    let series = [0, 1];
 
- for(let i = 2 ; i<num ; i++){
-        let next = series[i-1] + series[i-2]
+    for (let i = 2; i < num; i++) {
+        let next = series[i - 1] + series[i - 2]
 
         series.push(next)
- }
+    }
 
-console.log(series)
+    console.log(series)
 }
 
 fibonacci(5)
 
 
 
-const isPrime = (num)=>{
-    if(num == 0 || num == 1) return false
+const isPrime = (num) => {
+    if (num == 0 || num == 1) return false
 
-    for(let i =2 ; i<num; i++){
-        if(num % i == 0){
+    for (let i = 2; i < num; i++) {
+        if (num % i == 0) {
             return false
         }
     }
@@ -277,16 +277,16 @@ let a = isPrime(5)
 
 
 
-const isPrimeNumber =(arr)=>{
+const isPrimeNumber = (arr) => {
     let allPrimeNumber = []
-        arr.forEach(num => {
-            let a = isPrime(num)
-            if(a){
-                allPrimeNumber.push(num)
-            }
-        });
+    arr.forEach(num => {
+        let a = isPrime(num)
+        if (a) {
+            allPrimeNumber.push(num)
+        }
+    });
 
-        console.log(allPrimeNumber)
+    console.log(allPrimeNumber)
 }
 
 
@@ -294,3 +294,82 @@ isPrimeNumber([2, 3, 5, 7, 11, 13, 17, 19])
 
 
 
+
+const secondSmallest = (arr) => {
+    let a = [...new Set(arr)]
+    console.log(a)
+    let b = a.sort((a, b) => a - b)
+    return b[1]
+}
+
+// console.log(secondSmallest([10, 5, 20, 20, 8]))
+
+
+
+const gcd = (num1, num2) => {
+    let num = 0
+    if (num1 < num2) {
+        num = num1
+    } else {
+        num = 2
+    }
+
+    let gretestnumber = 0
+
+    for (let i = 1; i < num; i++) {
+        if (num1 % i == 0 && num2 % i == 0) {
+            gretestnumber = i
+        }
+    }
+    console.log(gretestnumber)
+}
+
+// gcd(60, 90)
+
+
+
+
+const reverseEachWord = (sentance) => {
+
+    let done = []
+
+    let a = sentance.split(' ')
+
+    a.forEach(ele => {
+        let a = ele.split('').reverse().join('')
+
+        done.push(a)
+    });
+
+    console.log(...done)
+} 
+
+// reverseEachWord("hello sir")
+
+
+
+
+const reverseEachWord2 = (sentance) => {
+    let a = sentance.split(' ')
+    let newSentace = ''
+    a.forEach(ele => {
+        let b = ele.split('').reverse().join("")
+        newSentace = newSentace.length == 0 ? newSentace + b : newSentace + " " + b
+        console.log(b)
+    }) 
+    console.log(newSentace)  
+}
+
+
+// reverseEachWord2('hello sir')
+
+
+
+const myReverse=(data)=>{
+    let a = data.split('').reverse().join('')
+
+    console.log(a)
+}
+
+// myReverse('hello sir')
+// myReverse('javaScript')
