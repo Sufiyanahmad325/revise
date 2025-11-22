@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        button {
+            padding: 7px 30px;
+            border-radius: 5px;
+        }
+
+        input {
+            transform: scale(1.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+
+            <div class="quiz">
+                <h2>question</h2>
+
+                <div>
+                    <input type="radio" name="option" id="1">
+                    <label for="1"> question </label>
+                </div>
+            </div>
+
+        </div>
+        <button onclick="checkResult()">Submit</button>
+        <button onclick="reload()">Reload</button>
+    </div>
+
+
+    <script>
+
+        const indiaQuiz = [
+            {
+                question: "What is the capital of Andhra Pradesh?",
+                options: ["Amaravati", "Hyderabad", "Vijayawada", "Visakhapatnam"],
+                answer: "Amaravati"
+            },
+            {
+                question: "What is the capital of Maharashtra?",
+                options: ["Nagpur", "Pune", "Mumbai", "Nashik"],
+                answer: "Mumbai"
+            },
+            {
+                question: "What is the capital of Tamil Nadu?",
+                options: ["Coimbatore", "Madurai", "Chennai", "Salem"],
+                answer: "Chennai"
+            },
+            {
+                question: "What is the capital of West Bengal?",
+                options: ["Darjeeling", "Howrah", "Kolkata", "Asansol"],
+                answer: "Kolkata"
+            },
+        ];
+
+
+        const box = document.querySelector(".box")
+        let score = 0
+
+        const loadQuiz = () => {
+
+            let allQuizContainer = '';
+
+            indiaQuiz.forEach((element, index) => {
+                let quizHtml = `
+                <div class='quiz'>
+                    <h2>${element.question}</h2>
+                `;
+                element.options.forEach((option, ind) => {
+                    quizHtml += `
+                <div>
+                    <input type="radio" value="${option}" name="${index}" id="${option}h${ind}">
+                    <label for="${option}h${ind}"> ${option} </label>
+                </div>
+                        `;
+                })
+
+                quizHtml += `</div>`;
+                allQuizContainer += quizHtml;
+
+            })
+
+            box.innerHTML = allQuizContainer
+
+        }
+
+
+        const checkResult = () => {
+
+            let inputs = document.querySelectorAll('.quiz')
+            console.log(inputs)
+
+            indiaQuiz.forEach((element, index) => {
+                let allInput = inputs[index].querySelectorAll('input')
+                allInput.forEach((ele, ind) => {
+                    if (ele.checked && ele.value === element.answer) {
+                        score++
+                    }
+                })
+            })
+
+            box.innerHTML += `<h1>${score} / ${indiaQuiz.length}</h1>`;
+        }
+
+
+
+        const reload = ()=>{
+            window.location.reload()
+        }
+
+
+        loadQuiz()
+
+    </script>
+</body>
+
+</html>

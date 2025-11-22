@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        button {
+            padding: 7px 30px;
+            border-radius: 5px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box"></div>
+        <button>Submit</button>
+    </div>
+
+
+    <script>
+
+        const indiaQuiz = [
+            {
+                question: "What is the capital of Andhra Pradesh?",
+                options: ["Amaravati", "Hyderabad", "Vijayawada", "Visakhapatnam"],
+                answer: "Amaravati"
+            },
+            {
+                question: "What is the capital of Maharashtra?",
+                options: ["Nagpur", "Pune", "Mumbai", "Nashik"],
+                answer: "Mumbai"
+            },
+            {
+                question: "What is the capital of Tamil Nadu?",
+                options: ["Coimbatore", "Madurai", "Chennai", "Salem"],
+                answer: "Chennai"
+            },
+            {
+                question: "What is the capital of West Bengal?",
+                options: ["Darjeeling", "Howrah", "Kolkata", "Asansol"],
+                answer: "Kolkata"
+            },
+            {
+                question: "What is the capital of Rajasthan?",
+                options: ["Jodhpur", "Udaipur", "Jaipur", "Ajmer"],
+                answer: "Jaipur"
+            }
+
+
+        ];
+
+
+        const quizBox = document.querySelector('.box')
+
+
+        const loadQuiz = () => {
+            let allQuizHTML = '';
+
+            indiaQuiz.forEach((element, index) => {
+                let quizHTML = `
+                <div class="quiz">
+                <h2 class="question">${element.question}</h2>`
+
+                indiaQuiz[index].options.forEach((option, optionIndex) => {
+                    const inputId = `q${option}_opt${index}`
+                    quizHTML += `
+                    <div>
+                        <input type="radio" id="${inputId}" name="quiz${index}" value="${option}">
+                        <label for="${inputId}">${option}</label>
+                    </div>`
+                });
+
+                quizHTML += `</div>`;
+
+                allQuizHTML += quizHTML
+
+            })
+
+            quizBox.innerHTML = allQuizHTML
+        }
+
+
+
+
+        const SubmitBtn = document.querySelector('button')
+
+        let score = 0
+
+        SubmitBtn.addEventListener("click", () => {
+
+            const allQuiz = document.querySelectorAll(".quiz")
+
+            indiaQuiz.forEach((element, index) => {
+                let inputs = allQuiz[index].querySelectorAll('input')
+                console.log(inputs)
+                inputs.forEach((ele, ind) => {
+                    if (ele.checked && ele.value == element.answer) {
+                        score++
+                    }
+                })
+            })
+            const result = document.createElement("h1");
+            result.textContent = `The Score is ${score} / ${indiaQuiz.length}`;
+            quizBox.appendChild(result);
+        })
+
+
+
+
+
+
+
+
+
+        loadQuiz()
+
+
+    </script>
+</body>
+
+</html>
